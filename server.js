@@ -173,6 +173,6 @@ app.post("/addvote", middleware, async (req, res) => {
     return res.status(500).send("Server Error");
   }
 });
-app.listen(8021, () => {
+app.listen(8022, () => {
   console.log("listening on port 8021");
 });
