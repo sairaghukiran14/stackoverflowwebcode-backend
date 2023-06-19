@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 var cors = require("cors");
 
-app.use(cors());
 const bodyparser = require("body-parser");
 const users = require("./schemamodels/userModel.js");
 const jwt = require("jsonwebtoken");
@@ -13,6 +12,7 @@ const anwserModel = require("./schemamodels/anwserModel.js");
 const commentModel = require("./schemamodels/commentModel.js");
 const voteModel = require("./schemamodels/voteModel.js");
 const questions = require("./schemamodels/questionModel.js");
+app.use(cors());
 const url =
   "mongodb+srv://raghukiran1414:Raghu%40123@cluster0.m82pxwz.mongodb.net/stackoverflowclone?retryWrites=true&w=majority";
 
