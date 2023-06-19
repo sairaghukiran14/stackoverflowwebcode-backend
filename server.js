@@ -22,7 +22,7 @@ mongoose
   })
   .catch((err) => console.log(err));
 app.get("/", (req, res) => {
-  res.send("Welcome to server");
+  res.send("Welcome to Stackoverflow server");
 });
 app.get("/homepage", (req, res) => {
   res.send("Welcome to Home");
