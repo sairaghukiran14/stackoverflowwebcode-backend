@@ -1,5 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
+var cors = require("cors");
+
+app.use(cors());
 const bodyparser = require("body-parser");
 const users = require("./schemamodels/userModel.js");
 const jwt = require("jsonwebtoken");
