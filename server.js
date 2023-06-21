@@ -127,7 +127,7 @@ app.get("/myprofile", middleware, async (req, res) => {
 });
 app.get("/:userid", middleware, async (req, res) => {
   try {
-    let user = await users.findById({ user_id: userid });
+    let user = await users.findById({ _id: userid });
     return res.json(user);
   } catch (error) {
     console.log(error);
