@@ -125,6 +125,15 @@ app.get("/myprofile", middleware, async (req, res) => {
     return res.status(500).send("Server Error");
   }
 });
+app.get("/:userid", middleware, async (req, res) => {
+  try {
+    let user = await users.findById({ user_id: userid });
+    return res.json(user);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send("Server Error");
+  }
+});
 app.get("/allusers", middleware, async (req, res) => {
   try {
     let allprofiles = await users.find();
