@@ -127,7 +127,7 @@ app.get("/myprofile", middleware, async (req, res) => {
 });
 app.get("/:userid", middleware, async (req, res) => {
   try {
-    let user = await users.findById({ _id: userid });
+    let user = await users.findById({ _id: req.params.userid });
     return res.json(user);
   } catch (error) {
     console.log(error);
@@ -205,5 +205,5 @@ app.post("/addvote", middleware, async (req, res) => {
   }
 });
 app.listen(8022, () => {
-  console.log("listening on port 8021");
+  console.log("listening on port 8022");
 });
