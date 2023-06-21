@@ -205,5 +205,5 @@ app.post("/addvote", middleware, async (req, res) => {
   }
 });
 app.listen(8022, () => {
-  console.log("listening on port 8022");
+  console.log("listening  port 8022");
 });
