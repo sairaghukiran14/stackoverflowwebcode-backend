@@ -89,6 +89,7 @@ app.post("/addquestion", middleware, async (req, res) => {
       user_id: exist.id,
       tags,
       anwsers_count: 0,
+      view_count: 0,
     });
     newquestion.save();
     return res.status(200).send("New Question Added");
@@ -118,6 +119,35 @@ app.get("/myquestions", middleware, async (req, res) => {
     let myquestions = await questions.find({ user_id: req.user.id });
 
     return res.json(myquestions);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send("Server Error");
+  }
+});
+app.get("/updatequestions", async (req, res) => {
+  try {
+    const { questionid, viewcount } = req.body;
+    let count = viewcount;
+    let findanwserscount = await anwserModel
+      .find({ question_id: questionid })
+      .count();
+    if (count === true) {
+      let updatedquestions = await questions
+        .updateOne(
+          { _id: questionid },
+          { anwsers_count: findanwserscount },
+          { $inc: { view_count: +1 } }
+        )
+        .then((result) => {
+          console.log("Document updated successfully");
+          // Handle the result
+        })
+        .catch((error) => {
+          console.error("Error updating document:", error);
+          // Handle the error
+        });
+      return res.json(updatedquestions);
+    }
   } catch (error) {
     console.log(error);
     return res.status(500).send("Server Error");

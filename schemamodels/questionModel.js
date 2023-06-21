@@ -19,7 +19,11 @@ const questions = new mongoose.Schema(
       required: true,
     },
     anwsers_count: {
-      type: "string",
+      type: "number",
+      required: true,
+    },
+    view_count: {
+      type: "number",
       required: true,
     },
   },
