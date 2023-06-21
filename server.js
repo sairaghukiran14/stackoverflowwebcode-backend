@@ -100,7 +100,14 @@ app.post("/addquestion", middleware, async (req, res) => {
 app.get("/allquestions", middleware, async (req, res) => {
   try {
     let allquestions = await questions.find();
-    return res.json(allquestions);
+    console.log(allquestions);
+
+    let newallquestions2 = allquestions.map(async (question) => {
+      let user = await users.findById({ _id: question.user_id });
+      question.user_name = user.fullname;
+    });
+    console.log(newallquestions2);
+    return res.json(newallquestions2);
   } catch (error) {
     console.log(error);
     return res.status(500).send("Server Error");
@@ -109,6 +116,7 @@ app.get("/allquestions", middleware, async (req, res) => {
 app.get("/myquestions", middleware, async (req, res) => {
   try {
     let myquestions = await questions.find({ user_id: req.user.id });
+
     return res.json(myquestions);
   } catch (error) {
     console.log(error);
@@ -125,7 +133,7 @@ app.get("/myprofile", middleware, async (req, res) => {
     return res.status(500).send("Server Error");
   }
 });
-app.get("/:userid", middleware, async (req, res) => {
+app.get("/:userid", async (req, res) => {
   try {
     let user = await users.findById({ _id: req.params.userid });
     return res.json(user.fullname);
