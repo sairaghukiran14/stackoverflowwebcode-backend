@@ -146,7 +146,8 @@ app.get("/updatequestions", async (req, res) => {
           console.error("Error updating document:", error);
           // Handle the error
         });
-      let currentquestion = await questions.findById({ _id: questionid });
+      let currentquestion = await questions.findById(questionid);
+      console.log(currentquestion);
       return res.json(currentquestion);
     }
   } catch (error) {
